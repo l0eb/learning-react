@@ -1,17 +1,54 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDom from "react-dom";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const books = [
+  {
+    id: 1,
+    img: "https://m.media-amazon.com/images/I/71NaQHQCo0L._AC_UY218_.jpg",
+    title: "Batman: Year One",
+    author: "by Frank Miller and David Mazzucchelli",
+  },
+  {
+    id: 2,
+    img: "https://m.media-amazon.com/images/I/A1x+WBn7cnL._AC_UY218_.jpg",
+    title:
+      "Batman Halloween Comic Fest Special Edition (2017) #1 (Batman (2016-))",
+    author: "by Tom King",
+  },
+  {
+    id: 3,
+    img: "https://m.media-amazon.com/images/I/81uzbSXGeTL._AC_UY218_.jpg",
+    title: "Batman: The Dark Knight Returns",
+    author: "by Frank Miller",
+  },
+];
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function BookList() {
+  return (
+    <section className="booklist">
+      {books.map((book) => {
+        return <Book key={book.id} {...book}></Book>;
+      })}
+    </section>
+  );
+}
+
+const Book = (props) => {
+  const { img, title, author } = props;
+  const clickHandler = () => {
+    alert("hello");
+  };
+  return (
+    <article className="book">
+      <img src={img} alt="" />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
+      <button type="button" onClick={clickHandler}>
+        refrence{" "}
+      </button>
+    </article>
+  );
+};
+
+ReactDom.render(<BookList />, document.getElementById("root"));
